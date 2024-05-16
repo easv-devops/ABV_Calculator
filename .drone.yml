@@ -14,7 +14,7 @@ steps:
       SONARSECRET:
         from_secret: SonarQubeSecret
     commands:
-      - dotnet sonarscanner begin /k:"easv-devops_ABV-Calculator_AY-B_um0EVvRW2O60FlW" /d:sonar.host.url="http://sonar.setgo.dk:9000"  /d:sonar.token="$SONARSECRET"
+      - dotnet sonarscanner begin /k:"easv-devops_ABV_Calculator_AY-B_um0EVvRW2O60FlW" /d:sonar.host.url="http://sonar.setgo.dk:9000"  /d:sonar.token="$SONARSECRET"
       - dotnet build
       - dotnet sonarscanner end /d:sonar.token="$SONARSECRET"
  
