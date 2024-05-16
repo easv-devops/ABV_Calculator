@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chris\\RiderProjects\\ABV_Calculator\\ABV_Calculator\\ABV_Calculator.csproj": {}
+    "C:\\Users\\chris\\RiderProjects\\easv-devops\\ABV_Calculator\\ABV_Calculator\\ABV_Calculator.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chris\\RiderProjects\\ABV_Calculator\\ABV_Calculator\\ABV_Calculator.csproj": {
+    "C:\\Users\\chris\\RiderProjects\\easv-devops\\ABV_Calculator\\ABV_Calculator\\ABV_Calculator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chris\\RiderProjects\\ABV_Calculator\\ABV_Calculator\\ABV_Calculator.csproj",
+        "projectUniqueName": "C:\\Users\\chris\\RiderProjects\\easv-devops\\ABV_Calculator\\ABV_Calculator\\ABV_Calculator.csproj",
         "projectName": "ABV_Calculator",
-        "projectPath": "C:\\Users\\chris\\RiderProjects\\ABV_Calculator\\ABV_Calculator\\ABV_Calculator.csproj",
+        "projectPath": "C:\\Users\\chris\\RiderProjects\\easv-devops\\ABV_Calculator\\ABV_Calculator\\ABV_Calculator.csproj",
         "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chris\\RiderProjects\\ABV_Calculator\\ABV_Calculator\\obj\\",
+        "outputPath": "C:\\Users\\chris\\RiderProjects\\easv-devops\\ABV_Calculator\\ABV_Calculator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
