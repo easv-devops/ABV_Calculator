@@ -1,7 +1,13 @@
+using ABV_Calculator.Data;
+using ABV_Calculator.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<AbvCalculator>();
+builder.Services.AddScoped<ICalculationRepository,CalculationRepository>();
+
 
 var app = builder.Build();
 
