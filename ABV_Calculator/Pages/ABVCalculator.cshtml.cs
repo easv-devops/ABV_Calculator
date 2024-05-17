@@ -33,6 +33,7 @@ namespace ABV_Calculator.Pages
 
         public void OnPost()
         {
+            _logger.LogInformation("OnPost method called.");
             try
             {
                 if (OriginalGravity <= 0 || FinalGravity <= 0)
@@ -43,15 +44,17 @@ namespace ABV_Calculator.Pages
 
                 Abv = _abvCalculator.CalculateAbv(OriginalGravity, FinalGravity);
                 Date = DateTime.Now;
-                Console.WriteLine("Original Gravity: " + OriginalGravity);
-                Console.WriteLine("Final Gravity: " + FinalGravity);
-                Console.WriteLine("ABV: " + Abv);
+                
+                _logger.LogInformation("Original Gravity = {OriginalGravity}", OriginalGravity);
+                _logger.LogInformation("ABV = {ABV}", Abv);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error occurred during ABV calculation.");
                 ModelState.AddModelError(string.Empty, "An error occurred during ABV calculation.");
             }
+            _logger.LogInformation("OnPost method finished.");
+
         }
     }
 }

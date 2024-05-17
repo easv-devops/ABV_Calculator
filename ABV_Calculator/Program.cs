@@ -4,8 +4,9 @@ using ABV_Calculator.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Logging.AddConsole();
 builder.Services.AddRazorPages();
-builder.Services.AddSingleton<AbvCalculator>();
+builder.Services.AddScoped<AbvCalculator>();
 builder.Services.AddScoped<ICalculationRepository,CalculationRepository>();
 
 
