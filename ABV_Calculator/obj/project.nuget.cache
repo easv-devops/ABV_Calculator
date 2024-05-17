@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "nczZ6lHhkJ4QqUKWsUfXVbWLF2OGOXukoJc7Uh5vjT27nbvv49ZC8cOOcPi40Ev0j7QcT9JHD35ynPVMv03DRg==",
+  "dgSpecHash": "igP+uMpR00/yUFmEo5gy0sXKyo5LWXeFAPQLUfG/H78pjwVzUfSQnzN5f2kn3I5k7NEdWKQX5QE1U2sNv5wAbw==",
   "success": true,
   "projectFilePath": "C:\\Users\\chris\\RiderProjects\\easv-devops\\ABV_Calculator\\ABV_Calculator\\ABV_Calculator.csproj",
   "expectedPackageFiles": [
@@ -14,7 +14,9 @@
     "C:\\Users\\chris\\.nuget\\packages\\microsoft.extensions.logging\\9.0.0-preview.3.24172.9\\microsoft.extensions.logging.9.0.0-preview.3.24172.9.nupkg.sha512",
     "C:\\Users\\chris\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.0-preview.3.24172.9\\microsoft.extensions.logging.abstractions.9.0.0-preview.3.24172.9.nupkg.sha512",
     "C:\\Users\\chris\\.nuget\\packages\\microsoft.extensions.options\\9.0.0-preview.3.24172.9\\microsoft.extensions.options.9.0.0-preview.3.24172.9.nupkg.sha512",
-    "C:\\Users\\chris\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.0-preview.3.24172.9\\microsoft.extensions.primitives.9.0.0-preview.3.24172.9.nupkg.sha512"
+    "C:\\Users\\chris\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.0-preview.3.24172.9\\microsoft.extensions.primitives.9.0.0-preview.3.24172.9.nupkg.sha512",
+    "C:\\Users\\chris\\.nuget\\packages\\nunit\\4.1.0\\nunit.4.1.0.nupkg.sha512",
+    "C:\\Users\\chris\\.nuget\\packages\\nunit.analyzers\\4.2.0\\nunit.analyzers.4.2.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -41,3 +41,5 @@ C:\Users\chris\RiderProjects\easv-devops\ABV_Calculator\ABV_Calculator\obj\Debug
 C:\Users\chris\RiderProjects\easv-devops\ABV_Calculator\ABV_Calculator\obj\Debug\net8.0\ABV_Calculator.pdb
 C:\Users\chris\RiderProjects\easv-devops\ABV_Calculator\ABV_Calculator\obj\Debug\net8.0\ABV_Calculator.genruntimeconfig.cache
 C:\Users\chris\RiderProjects\easv-devops\ABV_Calculator\ABV_Calculator\obj\Debug\net8.0\ref\ABV_Calculator.dll
+C:\Users\chris\RiderProjects\easv-devops\ABV_Calculator\ABV_Calculator\bin\Debug\net8.0\nunit.framework.dll
+C:\Users\chris\RiderProjects\easv-devops\ABV_Calculator\ABV_Calculator\bin\Debug\net8.0\nunit.framework.legacy.dll
