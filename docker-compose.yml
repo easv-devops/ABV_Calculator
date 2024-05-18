@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  abv-calculator:
+    image: abv-calculator-image:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:80"
+
+  abv-calculator-db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    env_file:
+      - .env
+    ports:
+      - "1433:1433"
