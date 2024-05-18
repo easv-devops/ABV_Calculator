@@ -1,0 +1,2 @@
+ALTER TABLE Calculations DROP COLUMN date_time;
+ALTER TABLE Calculations ADD COLUMN date_time TIMESTAMP NOT NULL;
