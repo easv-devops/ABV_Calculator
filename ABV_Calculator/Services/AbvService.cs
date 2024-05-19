@@ -24,7 +24,7 @@ public class AbvService : IAbvService
             OriginalGravity = originalGravity,
             FinalGravity = finalGravity,
             Abv = abv,
-            Date = DateTime.UtcNow
+            date_time = DateTime.UtcNow
         };
         _calculationRepository.AddCalculation(calculation);
         return calculation;
