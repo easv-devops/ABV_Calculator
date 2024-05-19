@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ABV_Calculator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd94f016a66fde342678a215105739845a87e010")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c363a684a7bded2083c75a5eb2b72fb44a54729c")]
 [assembly: System.Reflection.AssemblyProductAttribute("ABV_Calculator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ABV_Calculator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

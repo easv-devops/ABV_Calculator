@@ -6,6 +6,7 @@ using System;
 using ABV_Calculator.Services;
 using ABV_Calculator.Data;
 using ABV_Calculator.Models;
+using ABV_Calculator.Services.Services;
 
 namespace ABV_Calculator.Pages
 
@@ -13,14 +14,14 @@ namespace ABV_Calculator.Pages
     public class AbvCalculatorModel : PageModel
     {
         private readonly ILogger<AbvCalculatorModel> _logger;
-        private readonly AbvCalculator _abvCalculator;
-        private readonly ICalculationRepository _calculationRepository;
+        private readonly IAbvService _abvService;
+       // private readonly AbvCalculator _abvCalculator;
+       // private readonly ICalculationRepository _calculationRepository;
 
-        public AbvCalculatorModel(ILogger<AbvCalculatorModel> logger, AbvCalculator abvCalculator, ICalculationRepository calculationRepository)
+        public AbvCalculatorModel(ILogger<AbvCalculatorModel> logger, IAbvService abvService)
         {
             _logger = logger;
-            _abvCalculator = abvCalculator;
-            _calculationRepository = calculationRepository;
+            _abvService = abvService;
         }
 
         [BindProperty] public double OriginalGravity { get; set; }
@@ -42,8 +43,9 @@ namespace ABV_Calculator.Pages
                     return;
                 }
 
-                Abv = _abvCalculator.CalculateAbv(OriginalGravity, FinalGravity);
-                Date = DateTime.Now;
+                var result = _abvService.CalculateAndSaveAbv(OriginalGravity, FinalGravity);
+                Abv = result.Abv;
+                Date = result.Date;
                 
                 _logger.LogInformation("Original Gravity = {OriginalGravity}", OriginalGravity);
                 _logger.LogInformation("ABV = {ABV}", Abv);
