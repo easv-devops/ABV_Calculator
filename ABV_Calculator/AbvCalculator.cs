@@ -1,11 +1,16 @@
 ﻿using ABV_Calculator.Pages;
+using NUnit.Framework.Internal;
+using Microsoft.Extensions.Logging;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
+using NUnit.Framework;
 
 namespace ABV_Calculator.Services;
 
 public class AbvCalculator
 {
 
-    private readonly ILogger _logger;
+    private readonly ILogger<AbvCalculatorModel> _logger;
+   //private readonly ILogger _logger;
 
     public AbvCalculator(ILogger<AbvCalculatorModel> logger)
     {
