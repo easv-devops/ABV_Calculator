@@ -30,7 +30,7 @@ namespace ABV_Calculator.Pages
 
         [BindProperty] public double? Abv { get; private set; }
 
-        public DateTime Date { get; private set; }
+        public DateTime DateTime { get; private set; }
 
         public void OnPost()
         {
@@ -45,7 +45,7 @@ namespace ABV_Calculator.Pages
 
                 var result = _abvService.CalculateAndSaveAbv(OriginalGravity, FinalGravity);
                 Abv = result.Abv;
-                Date = result.Date;
+                DateTime = result.date_time;
                 
                 _logger.LogInformation("Original Gravity = {OriginalGravity}", OriginalGravity);
                 _logger.LogInformation("ABV = {ABV}", Abv);
