@@ -12,13 +12,13 @@ steps:
       - dotnet sonarscanner begin /k:"easv-devops_ABV_Calculator_AY-B_um0EVvRW2O60FlW" /d:sonar.host.url="http://sonar.setgo.dk:9000"  /d:sonar.token="$SONARSECRET"
       - dotnet build
       - dotnet sonarscanner end /d:sonar.token="$SONARSECRET"
- 
+
 ---
 
 kind: pipeline
 type: docker
 name: deliver
-load: integration
+load:
 depends_on:
   - integration
 
@@ -39,24 +39,23 @@ depends_on:
   - name: trigger update
     image: curlimages/curl
     commands:
-        - "curl --fail -X GET 'http://5.189.148.90:8080/v1/update' -H 'Authorization: Bearer mytoken'" # Must match the token defined in docker-compose.yml
-        - sleep 10
+      - "curl --fail -X GET 'http://5.189.148.90:8080/v1/update' -H 'Authorization: Bearer mytoken'" # Must match the token defined in docker-compose.yml
+      - sleep 10
     depends_on:
-        - publish web
- 
- 
+      - publish web
+
   - name: update database
     image: flyway/flyway
     commands:
-        - flyway migrate
-          -url=jdbc:mysql://5.189.148.90:3306/ABV-Calculations
-          -user=myuser
-          -password=mypassword
-          -locations=filesystem:./db
+      - flyway migrate
+        -url=jdbc:mysql://5.189.148.90:3306/ABV-Calculations
+        -user=myuser
+        -password=mypassword
+        -locations=filesystem:./db
     depends_on:
-        - trigger update
-        
-         
+      - trigger update
+
+
   - name: performance tests
     image: grafana/k6
     commands:
@@ -64,14 +63,13 @@ depends_on:
     depends_on:
       - update database
 
-
   - name: end-to-end tests
     image: testcafe/testcafe
     commands:
       - testcafe chrome tests/e2e/end2end_test.js
     depends_on:
       - update database
-  
+    
 ---
 
 kind: pipeline
@@ -89,8 +87,8 @@ steps:
         from_secret: DockerUsername
       password:
         from_secret: DockerPassword
-      context: src
-      dockerfile: src/ABV_Calculator/Dockerfile
+      context: ABV_Calculator
+      dockerfile: ABV_Calculator/Dockerfile
       repo: chrsut01/abv-calculator
       tags:
         - prod
