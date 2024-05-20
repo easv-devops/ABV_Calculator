@@ -29,7 +29,7 @@ depends_on:
         from_secret: DockerUsername
       password:
         from_secret: DockerPassword
-      context: src
+      context: ABV_Calculator
       dockerfile: src/ABV_Calculator/Dockerfile
       repo: chrsut01/abv-calculator
       tags:
