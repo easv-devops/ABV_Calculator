@@ -21,7 +21,6 @@ steps:
 kind: pipeline
 type: docker
 name: deliver
-load:
 depends_on:
   - integration
 
@@ -33,8 +32,8 @@ steps:
         from_secret: DockerUsername
       password:
         from_secret: DockerPassword
-      context: ABV_Calculator
-      dockerfile: src/ABV_Calculator/Dockerfile
+      context: .
+      dockerfile: Dockerfile
       repo: chrsut01/abv-calculator
       tags:
         - staging
@@ -91,8 +90,8 @@ steps:
         from_secret: DockerUsername
       password:
         from_secret: DockerPassword
-      context: ABV_Calculator
-      dockerfile: ABV_Calculator/Dockerfile
+      context: .
+      dockerfile: Dockerfile
       repo: chrsut01/abv-calculator
       tags:
         - prod
