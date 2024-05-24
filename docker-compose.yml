@@ -17,7 +17,7 @@ services:
   
   
   abv-calculator-db:
-    image: mariadb:latest
+    image: mysql
     restart: always
     volumes:
       - ./db/data:/var/lib/mysql
