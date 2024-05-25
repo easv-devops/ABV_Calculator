@@ -53,7 +53,7 @@ steps:
       - flyway migrate
         -url=jdbc:mysql://5.189.148.90:3306/ABV-Calculations
         -user=myuser
-        -password=mypassword
+        -password=123456
         -locations=filesystem:./db
     depends_on:
       - trigger update
@@ -110,7 +110,7 @@ steps:
       - flyway migrate
         -url=jdbc:mysql://5.189.148.90:3306/ABV-Calculations
         -user=myuser
-        -password=mypassword
+        -password=123456
         -locations=filesystem:./db
     depends_on:
       - trigger update
