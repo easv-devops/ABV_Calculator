@@ -11,14 +11,12 @@ services:
     depends_on:
       - abv-calculator-db
     labels:
-          - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.enable=true"
   
   
   abv-calculator-db:
-    image: mysql
+    image: mariadb:latest
     restart: always
-    volumes:
-      - ./db/data:/var/lib/mysql
     environment:
         MYSQL_ROOT_PASSWORD: 123456
         MYSQL_DATABASE: ABV-Calculations
@@ -26,7 +24,8 @@ services:
         MYSQL_PASSWORD: mypassword
     ports:
       - "3306:3306"
-  
+    volumes:
+      - mariadb:/var/lib/mysql
   
   watchtower:
     image: containrrr/watchtower
@@ -40,3 +39,6 @@ services:
       - "com.centurylinklabs.watchtower.enable=false"
     ports:
       - 8080:8080
+
+volumes:
+    mariadb:
