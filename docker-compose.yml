@@ -1,3 +1,4 @@
+version: '3.4'
 
 services:
   abv-calculator:
@@ -11,7 +12,7 @@ services:
       - abv-calculator-db
     environment:
           - ASPNETCORE_ENVIRONMENT=Development
-          - ConnectionStrings__DefaultConnection=Server=abv-calculator-db;Port=3306;Database=ABV-Calculations;Uid=myuser;Pwd=mypassword;
+          - ConnectionStrings__DefaultConnection=Server=abv_calculator-abv-calculator-db-1;Port=3306;Database=ABV-Calculations;Uid=myuser;Pwd=mypassword;
     labels:
           - "com.centurylinklabs.watchtower.enable=true"
   
