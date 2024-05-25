@@ -10,9 +10,6 @@ services:
       - "8081:80"
     depends_on:
       - abv-calculator-db
-    environment:
-          - ASPNETCORE_ENVIRONMENT=Development
-          - ConnectionStrings__DefaultConnection=Server=abv_calculator-abv-calculator-db-1;Port=3306;Database=ABV-Calculations;Uid=myuser;Pwd=mypassword;
     labels:
           - "com.centurylinklabs.watchtower.enable=true"
   
