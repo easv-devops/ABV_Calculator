@@ -51,7 +51,7 @@ steps:
     image: flyway/flyway
     commands:
       - flyway migrate
-        -url=jdbc:mysql://5.189.148.90:3306/ABV-Calculations
+        -url=jdbc:mariadb://5.189.148.90:3306/ABV-Calculations
         -user=myuser
         -password=mypassword
         -locations=filesystem:./db
@@ -115,7 +115,7 @@ steps:
     image: flyway/flyway
     commands:
       - flyway migrate
-        -url=jdbc:mysql://5.189.148.90:3306/ABV-Calculations
+        -url=jdbc:mariadb://5.189.148.90:3306/ABV-Calculations
         -user=myuser
         -password=mypassword
         -locations=filesystem:./db
