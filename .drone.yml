@@ -9,9 +9,7 @@ steps:
       SONARSECRET:
         from_secret: SonarQubeSecret
     commands:
-      - dotnet sonarscanner begin /k:"easv-devops_ABV_Calculator_AY-B_um0EVvRW2O60FlW" /d:sonar.host.url="http://sonar.setgo.dk:9000"  /d:sonar.token="$SONARSECRET"
-        /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
-        /d:sonar.qualitygate.wait=true
+      - dotnet sonarscanner begin /k:"easv-devops_ABV_Calculator_AY-B_um0EVvRW2O60FlW" /d:sonar.host.url="http://sonar.setgo.dk:9000"  /d:sonar.token="$SONARSECRET" /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml /d:sonar.qualitygate.wait=true
       - dotnet build --no-incremental
       - dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
       - dotnet sonarscanner end /d:sonar.token="$SONARSECRET"
@@ -38,7 +36,6 @@ steps:
       tags:
         - staging
 
-
   - name: trigger update
     image: curlimages/curl
     commands:
@@ -50,22 +47,16 @@ steps:
   - name: test database connection
     image: mysql:5.7
     commands:
-      - mysql -h 5.189.148.90 -u myuser -p mypassword -e "SHOW DATABASES;"
+      - mysql -h 5.189.148.90 -u myuser -pmypassword -e "SHOW DATABASES;"
     depends_on:
       - trigger update
-      
-      
+            
   - name: update database
     image: flyway/flyway
     commands:
-      - flyway migrate
-        -url=jdbc:mariadb://5.189.148.90:3306/ABV-Calculations
-        -user=myuser
-        -password=mypassword
-        -locations=filesystem:./db
+      - flyway migrate -url=jdbc:mariadb://5.189.148.90:3306/ABV-Calculations -user=myuser -password=mypassword -locations=filesystem:./db
     depends_on:
       - trigger update
-
 
   - name: performance tests
     image: grafana/k6
@@ -90,7 +81,6 @@ depends_on:
   - deliver
 
 steps:
-
   - name: release web
     image: plugins/docker
     settings:
@@ -112,15 +102,10 @@ steps:
     depends_on:
       - release web
 
-
-
   - name: update database
     image: flyway/flyway
     commands:
       - flyway migrate
-        -url=jdbc:mariadb://5.189.148.90:3306/ABV-Calculations
-        -user=myuser
-        -password=mypassword
-        -locations=filesystem:./db
+        -url=jdbc:mariadb://5.189.148.90:3306/ABV-Calculations -user=myuser -password=mypassword -locations=filesystem:./db
     depends_on:
       - trigger update
