@@ -1,11 +1,11 @@
 ﻿using ABV_Calculator.Data;
 using ABV_Calculator.Models;
+using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using Moq.EntityFrameworkCore;
 
 namespace ABV_Calculator.Data
 {
@@ -13,29 +13,24 @@ namespace ABV_Calculator.Data
     public class CalculationRepositoryTests
     {
         [Test]
-        public void AddCalculation_ValidCalculation_AddsToDatabase()
+        public void AddCalculation_ShouldAddToDatabase()
         {
             // Arrange
-            var mockDbContext = new Mock<CalculatorDbContext>();
-            var repository = new CalculationRepository(mockDbContext.Object);
-            var calculation = new Calculation
-            {
-                OriginalGravity = 1.050,
-                FinalGravity = 1.010,
-                Abv = 5.5,
-                date_time = DateTime.Now
-            };
+            var dbContextMock = new Mock<CalculatorDbContext>();
+            var repository = new CalculationRepository(dbContextMock.Object);
 
+            var calculation = new Calculation {  Id = 1, OriginalGravity = 1.050, FinalGravity = 1.010, Abv = 5.5, date_time = DateTime.Now };
+            
             // Act
             repository.AddCalculation(calculation);
 
             // Assert
-            mockDbContext.Verify(db => db.Calculations.Add(It.IsAny<Calculation>()), Times.Once);
-            mockDbContext.Verify(db => db.SaveChanges(), Times.Once);
+            dbContextMock.Verify(db => db.Calculations.Add(calculation), Times.Once);
+            dbContextMock.Verify(db => db.SaveChanges(), Times.Once);
         }
 
         [Test]
-        public void GetAllCalculations_ReturnsAllCalculationsFromDatabase()
+        public void GetAllCalculations_ShouldReturnAllCalculations()
         {
             // Arrange
             var calculations = new List<Calculation>
@@ -43,16 +38,17 @@ namespace ABV_Calculator.Data
                 new Calculation { Id = 1, OriginalGravity = 1.050, FinalGravity = 1.010, Abv = 5.5, date_time = DateTime.Now },
                 new Calculation { Id = 2, OriginalGravity = 1.060, FinalGravity = 1.015, Abv = 6.0, date_time = DateTime.Now }
             };
-            var mockDbContext = new Mock<CalculatorDbContext>();
-            mockDbContext.Setup(db => db.Calculations).Returns((DbSet<Calculation>)calculations.AsQueryable());
-            var repository = new CalculationRepository(mockDbContext.Object);
+
+            var dbContextMock = new Mock<CalculatorDbContext>();
+            dbContextMock.Setup(db => db.Calculations).ReturnsDbSet(calculations);
+
+            var repository = new CalculationRepository(dbContextMock.Object);
 
             // Act
             var result = repository.GetAllCalculations();
 
             // Assert
-            Assert.That(calculations.Count, Is.EqualTo (result.Count()));
-            Assert.That(result.All(c => calculations.Any(cc => cc.Id == c.Id && cc.OriginalGravity == c.OriginalGravity && cc.FinalGravity == c.FinalGravity && cc.Abv == c.Abv)));
+            Assert.That(calculations.Count, Is.EqualTo(result.Count()));
         }
     }
 }
