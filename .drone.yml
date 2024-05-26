@@ -45,7 +45,7 @@ steps:
       - publish web
 
   - name: test database connection
-    image: mysql:5.7
+    image: mariadb:latest
     commands:
       - mysql -h 5.189.148.90 -u myuser -pmypassword -e "SHOW DATABASES;"
     depends_on:
