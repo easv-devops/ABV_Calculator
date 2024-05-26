@@ -44,12 +44,6 @@ steps:
     depends_on:
       - publish web
 
-  - name: test database connection
-    image: mariadb:latest
-    commands:
-      - mysql -h 5.189.148.90 -u myuser -pmypassword -e "SHOW DATABASES;"
-    depends_on:
-      - trigger update
             
   - name: update database
     image: flyway/flyway
