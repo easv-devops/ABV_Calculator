@@ -29,5 +29,9 @@
       <ProjectReference Include="..\ABV_Calculator\ABV_Calculator.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Unit\" />
+    </ItemGroup>
+
 
 </Project>
