@@ -48,7 +48,7 @@ namespace ABV_Calculator.Data
             var result = repository.GetAllCalculations();
 
             // Assert
-            Assert.That(calculations.Count, Is.EqualTo(result.Count()));
+            Assert.That(calculations, Has.Count.EqualTo(result.Count()));
         }
     }
 }
