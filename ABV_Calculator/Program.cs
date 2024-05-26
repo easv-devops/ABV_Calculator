@@ -22,19 +22,9 @@ var configuration = builder.Configuration;
 builder.Services.AddDbContext<CalculatorDbContext>(options =>
 {
     var connectionString = configuration.GetConnectionString("DefaultConnection");
-    options.UseSqlServer(connectionString);
+    options.UseMySQL(connectionString);
 });
 
-//builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-
-/*builder.Services.AddScoped<CalculatorDbContext>(ServiceProvider =>
-{
-    var connectionString = configuration.GetConnectionString("DefaultConnection");
-    
-    var optionsBuilder = new DbContextOptionsBuilder<CalculatorDbContext>();
-    optionsBuilder.UseSqlServer(connectionString);
-    return new CalculatorDbContext(optionsBuilder.Options);
-});*/
 
 
 var app = builder.Build();

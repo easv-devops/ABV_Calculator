@@ -1,0 +1,116 @@
+kind: pipeline
+type: docker
+name: integration
+
+steps:
+  - name: code-analysis
+    image: boulundeasv/dotnet-sdk-with-java
+    environment:
+      SONARSECRET:
+        from_secret: SonarQubeSecret
+    commands:
+      - dotnet sonarscanner begin /k:"easv-devops_ABV_Calculator_AY-B_um0EVvRW2O60FlW" /d:sonar.host.url="http://sonar.setgo.dk:9000"  /d:sonar.token="$SONARSECRET"
+        /d:sonar.cs.vscoveragexml.reportsPaths=coverage.xml
+        /d:sonar.qualitygate.wait=true
+      - dotnet build --no-incremental
+      - dotnet-coverage collect "dotnet test" -f xml -o "coverage.xml"
+      - dotnet sonarscanner end /d:sonar.token="$SONARSECRET"
+
+---
+
+kind: pipeline
+type: docker
+name: deliver
+depends_on:
+  - integration
+
+steps:
+  - name: publish web
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: DockerUsername
+      password:
+        from_secret: DockerPassword
+      context: .
+      dockerfile: Dockerfile
+      repo: chrsut01/abv-calculator
+      tags:
+        - staging
+
+
+  - name: trigger update
+    image: curlimages/curl
+    commands:
+      - "curl --fail -X GET 'http://5.189.148.90:8080/v1/update' -H 'Authorization: Bearer mytoken'" # Must match the token defined in docker-compose.yml
+      - sleep 10
+    depends_on:
+      - publish web
+
+  - name: update database
+    image: flyway/flyway
+    commands:
+      - flyway migrate
+        -url=jdbc:mysql://5.189.148.90:3306/ABV-Calculations
+        -user=myuser
+        -password=mypassword
+        -locations=filesystem:./db
+    depends_on:
+      - trigger update
+
+
+  - name: performance tests
+    image: grafana/k6
+    commands:
+      - k6 run tests/performance/spike_test.js
+    depends_on:
+      - update database
+
+  - name: end-to-end tests
+    image: testcafe/testcafe
+    commands:
+      - testcafe chrome tests/e2e/end2end_test.js
+    depends_on:
+      - update database
+
+---
+
+kind: pipeline
+type: docker
+name: deploy
+depends_on:
+  - deliver
+
+steps:
+
+  - name: release web
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: DockerUsername
+      password:
+        from_secret: DockerPassword
+      context: .
+      dockerfile: Dockerfile
+      repo: chrsut01/abv-calculator
+      tags:
+        - prod
+
+  - name: trigger update
+    image: curlimages/curl
+    commands:
+      - "curl --fail -X GET 'http://5.189.134.176:8080/v1/update' -H 'Authorization: Bearer mytoken'" # Must match the token defined in docker-compose.yml
+      - sleep 10
+    depends_on:
+      - release web
+
+  - name: update database
+    image: flyway/flyway
+    commands:
+      - flyway migrate
+        -url=jdbc:mysql://5.189.148.90:3306/ABV-Calculations
+        -user=myuser
+        -password=mypassword
+        -locations=filesystem:./db/sql
+    depends_on:
+      - trigger update
