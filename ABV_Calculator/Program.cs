@@ -22,7 +22,7 @@ var configuration = builder.Configuration;
 builder.Services.AddDbContext<CalculatorDbContext>(options =>
 {
     var connectionString = configuration.GetConnectionString("DefaultConnection");
-    options.UseMySQL(connectionString);
+    if (connectionString != null) options.UseMySQL(connectionString);
 });
 
 
