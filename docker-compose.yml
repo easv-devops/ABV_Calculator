@@ -20,7 +20,7 @@ services:
         MYSQL_USER: myuser
         MYSQL_PASSWORD: mypassword
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mariadb:/var/lib/mysql
   
