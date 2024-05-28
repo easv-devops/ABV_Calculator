@@ -32,7 +32,7 @@ steps:
         from_secret: DockerPassword
       context: .
       dockerfile: Dockerfile
-      repo: abv-calculator-image
+      repo: chrsut01/abv-calculator-image
       tags:
         - staging
 
