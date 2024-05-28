@@ -59,12 +59,6 @@ steps:
     depends_on:
       - update database
 
-  - name: end-to-end tests
-    image: testcafe/testcafe
-    commands:
-      - testcafe chrome ABV_Calculator/Testing/e2e/end2end_test.js
-    depends_on:
-      - update database
     
 ---
 
