@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Moq.EntityFrameworkCore;
 
-namespace Tests.Unit
+namespace ABV_Calculator.Testing.Unit
 {
     [TestFixture]
     public class CalculationRepositoryTests
