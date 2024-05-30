@@ -19,11 +19,11 @@
                 <label for="finalGravity">Final Gravity:</label>
                 <input type="number" class="form-control" id="finalGravity" name="FinalGravity" asp-for="FinalGravity" step="0.001">
             </div>
-            <button type="submit" class="btn btn-primary" id="abv-button" asp-page-handler="OnPost">Calculate ABV</button>
+            <button type="submit" class="btn btn-primary" asp-page-handler="OnPost">Calculate ABV</button>
         </form>
         @if (Model.Abv.HasValue)
         {
-            <div class="mt-3"  id="resultsSection">
+            <div class="mt-3">
                 <h2>Results:</h2>
                 <p><strong>ABV:</strong> @Model.Abv.Value.ToString("0.00")%</p>
                 <p><strong>Date:</strong> @Model.DateTime.ToString("yyyy-MM-dd HH:mm:ss")</p>
