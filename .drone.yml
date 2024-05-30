@@ -56,9 +56,17 @@ steps:
     image: grafana/k6
     commands:
       - k6 run ABV_Calculator/Testing/Performance/spike_test.js
+      - k6 run ABV_Calculator/Testing/Performance/stress_test.js
     depends_on:
       - update database
-  
+
+
+  - name: end-to-end tests
+    image: testcafe/testcafe
+    commands:
+      - testcafe chrome ABV_Calculator/Testing/e2e/end2end_test.js
+    depends_on:
+      - update database
 
     
 ---
