@@ -1,4 +1,5 @@
 import http from 'k6/http';
+import { check } from 'k6';
 
 export let options = {
     insecureSkipTLSVerify: true,
@@ -20,5 +21,10 @@ export let options = {
 };
 
 export default function ()  {
+    let response = http.get("http://5.189.148.90:8081/ABV_Calculator/");
+
+    check(response, {
+        'status is 200': (r) => r.status === 200
+    });
 };
 
