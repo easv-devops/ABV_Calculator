@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using NUnit.Framework;
 
-namespace ABV_Calculator;
+namespace ABV_Calculator.Testing.Unit;
 
 [TestFixture]
     public class AbvCalculatorTests
